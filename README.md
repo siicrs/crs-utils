@@ -26,3 +26,7 @@ OK:
         Para RUT [11111111]
 ```
 Y se debería ver haber generado como resultado un archivo crs firmado [crs-signed.xml](./crs-signed.xml)
+
+### Código
+El código incluido en el archivo [crs-utils.jar](./crs-utils.jar) está basado en lo publicado por [IRS](http://irsgov.github.io) para FATCA
+http://irsgov.github.io/IDES-Data-Preparation-Java/
