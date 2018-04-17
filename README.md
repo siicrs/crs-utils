@@ -18,12 +18,11 @@ java -jar crs-utils.jar^
  -kpass11111111^
  -file crs.xml
  ```
-Al ejecutarlo se verá como resultado:
-crs-utils>sign.bat
+Al ejecutarlo se debería ver:
 ```
 OK:
         Archivo [crs-utils\crs.xml]
         Firmado en archivo [crs-utils\crs-signed.xml]
         Para RUT [11111111]
 ```
-Y se debería ver como resultado un archivo [crs-signed.xml](./crs-signed.xml)
+Y se debería ver haber generado como resultado un archivo crs firmado [crs-signed.xml](./crs-signed.xml)
