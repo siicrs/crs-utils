@@ -14,15 +14,15 @@
 		<crs:ReportingFI>
 			<crs:ResCountryCode>CL</crs:ResCountryCode>
 			<crs:IN INType="RUT" issuedBy="CL">11111111</crs:IN>
-			<crs:Name nameType="OECD207">FOLAgenciaDeValoresSpA</crs:Name>
+			<crs:Name nameType="OECD207">TEST</crs:Name>
 			<crs:Address legalAddressType="OECD303">
 				<cfc:CountryCode>CL</cfc:CountryCode>
 				<cfc:AddressFix>
-					<cfc:Street>San Pio X 2390</cfc:Street>
+					<cfc:Street>Calle 1</cfc:Street>
 					<cfc:SuiteIdentifier>201</cfc:SuiteIdentifier>
 					<cfc:FloorIdentifier>2</cfc:FloorIdentifier>
 					<cfc:DistrictName>Santiago</cfc:DistrictName>
-					<cfc:PostCode>7510061</cfc:PostCode>
+					<cfc:PostCode>7000000</cfc:PostCode>
 					<cfc:City>Santiago</cfc:City>
 					<cfc:CountrySubentity>Región Metropolitana</cfc:CountrySubentity>
 				</cfc:AddressFix>
