@@ -1,0 +1,37 @@
+<crs:CRS_OECD xmlns:crs="urn:oecd:ties:crs:v1" xmlns:cfc="urn:oecd:ties:commontypesfatcacrs:v1" xmlns:ftc="urn:oecd:ties:fatca:v1" xmlns:iso="urn:oecd:ties:isocrstypes:v1" xmlns:stf="urn:oecd:ties:stf:v4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<crs:MessageSpec>
+		<crs:SendingCompanyIN>11111111</crs:SendingCompanyIN>
+		<crs:TransmittingCountry>CL</crs:TransmittingCountry>
+		<crs:ReceivingCountry>CL</crs:ReceivingCountry>
+		<crs:MessageType>CRS</crs:MessageType>
+		<crs:Warning>31-122017</crs:Warning>
+		<crs:MessageRefId>CL2017CLM11111111-0000000001</crs:MessageRefId>
+		<crs:MessageTypeIndic>CRS703</crs:MessageTypeIndic>
+		<crs:ReportingPeriod>2017-12-31</crs:ReportingPeriod>
+		<crs:Timestamp>2018-04-05T19:09:08.350-03:00</crs:Timestamp>
+	</crs:MessageSpec>
+	<crs:CrsBody>
+		<crs:ReportingFI>
+			<crs:ResCountryCode>CL</crs:ResCountryCode>
+			<crs:IN INType="RUT" issuedBy="CL">11111111</crs:IN>
+			<crs:Name nameType="OECD207">FOLAgenciaDeValoresSpA</crs:Name>
+			<crs:Address legalAddressType="OECD303">
+				<cfc:CountryCode>CL</cfc:CountryCode>
+				<cfc:AddressFix>
+					<cfc:Street>San Pio X 2390</cfc:Street>
+					<cfc:SuiteIdentifier>201</cfc:SuiteIdentifier>
+					<cfc:FloorIdentifier>2</cfc:FloorIdentifier>
+					<cfc:DistrictName>Santiago</cfc:DistrictName>
+					<cfc:PostCode>7510061</cfc:PostCode>
+					<cfc:City>Santiago</cfc:City>
+					<cfc:CountrySubentity>Región Metropolitana</cfc:CountrySubentity>
+				</cfc:AddressFix>
+			</crs:Address>
+			<crs:DocSpec>
+				<stf:DocTypeIndic>OECD11</stf:DocTypeIndic>
+				<stf:DocRefId>CL2017CLF11111111-0000000001</stf:DocRefId>
+			</crs:DocSpec>
+		</crs:ReportingFI>
+		<crs:ReportingGroup />
+	</crs:CrsBody>
+</crs:CRS_OECD>
