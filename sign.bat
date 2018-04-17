@@ -1,3 +1,4 @@
+@echo off
 java -Dfile.encoding=UTF-8 -jar crs-utils.jar^
  -rut 11111111^
  -ks ks.p12^
