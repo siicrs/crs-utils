@@ -1,17 +1,20 @@
 # crs-utils
 ## Utilidades para CRS SII
 
+Para ejecutar estas utilidades se requiere:
+- Tener instalado [Java](http://www.oracle.com/technetwork/java/index.html) versión 8 o mayor
+
 ### Firma y Envio XML
 Para enviar un archivo CRS a ambiente de pruebas utilizando la línea de comandos se requiere descargar el archivo [sara-client-1.0.0.jar](./sara-client-1.0.0.jar)
 
 Y ejecutar lo siguiente:
-```
+```bash
 java -cp .;sara-client-1.0.0.jar -Dfile.encoding=UTF-8 cl.sii.sara.client.SaraCrsTestClientLauncher
  ```
 
 Se siolicitarán ciertos argumentos y se preguntará si quiere enviar el reporte:
 
-```
+```bash
 java -cp .;sara-client-1.0.0.jar -Dfile.encoding=UTF-8 cl.sii.sara.client.SaraCrsTestClientLauncher
 Ingrese Sender:
 MiInstitucionFinancieraTest
@@ -120,10 +123,9 @@ Para poder firmar un archivo CRS se requiere:
 - La clave de la llave privada, por ejemplo, 11111111
 - El archivo XML CRS, por ejemplo, [crs.xml](./crs.xml)
 - Descargar la utilidad [crs-utils.jar](./crs-utils.jar)
-- Tener instalado [Java](http://www.oracle.com/technetwork/java/index.html) versión 8 o mayor
 
 En el archivo [sign.bat](./sign.bat) se puede ver como llamar a la utilidad para firmar un archivo:
-```
+```bash
 java -jar -Dfile.encoding=UTF-8 crs-utils.jar^
  -rut 11111111^
  -ks ks.p12^
@@ -132,7 +134,7 @@ java -jar -Dfile.encoding=UTF-8 crs-utils.jar^
  -file crs.xml
  ```
 Al ejecutarlo se debería ver:
-```
+```bash
 OK:
         Archivo [crs-utils\crs.xml]
         Firmado en archivo [crs-utils\crs-signed.xml]
