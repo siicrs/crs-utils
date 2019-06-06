@@ -4,7 +4,38 @@
 Para ejecutar estas utilidades se requiere:
 - Tener instalado [Java](http://www.oracle.com/technetwork/java/index.html) versión 8 o mayor
 
-### Firma y Envio XML
+### Firma XML
+Para poder firmar un archivo CRS se requiere:
+- El RUT del dueño de certificado sin puntos ni dígito verificador, por ejemplo, el RUT 11.111.111-1 sería 11111111
+- El certificado digital en formato p12 (extensión .pfx o .p12), por ejemplo, [ks.p12](./ks.p12)
+- La clave del almacén p12, por ejemplo, 11111111, si no la conoce se coloca la misma de la clave privada
+- La clave de la llave privada, por ejemplo, 11111111
+- El archivo XML CRS, por ejemplo, [crs.xml](./crs.xml)
+- Descargar la utilidad [crs-utils.jar](./crs-utils.jar)
+
+En el archivo [sign.bat](./sign.bat) se puede ver como llamar a la utilidad para firmar un archivo:
+```bash
+java -jar -Dfile.encoding=UTF-8 crs-utils.jar^
+ -rut 11111111^
+ -ks ks.p12^
+ -kspass 11111111^
+ -kpass 11111111^
+ -file crs.xml
+ ```
+Al ejecutarlo se debería ver:
+```bash
+OK:
+        Archivo [crs-utils\crs.xml]
+        Firmado en archivo [crs-utils\crs-signed.xml]
+        Para RUT [11111111]
+```
+Y se debería generar como resultado un archivo crs firmado [crs-signed.xml](./crs-signed.xml)
+
+#### Código
+El código incluido en el archivo [crs-utils.jar](./crs-utils.jar) está basado en lo publicado por [IRS](http://irsgov.github.io) para FATCA
+http://irsgov.github.io/IDES-Data-Preparation-Java/
+
+### Envio XML
 Para enviar un archivo CRS a ambiente de pruebas utilizando la línea de comandos se requiere descargar el archivo [sara-client-1.0.0.jar](./sara-client-1.0.0.jar)
 
 Y ejecutar lo siguiente:
@@ -115,33 +146,3 @@ INFO cl.sii.sara.client.SaraClientCmd - SubmitResponse:
 INFO cl.sii.sara.client.SaraClientCmd - ID: RID000000000000000000001
 INFO cl.sii.sara.client.SaraClientCmd - Status: RECEIVED
 ```
-### Sólo Firma XML
-Para poder firmar un archivo CRS se requiere:
-- El RUT del dueño de certificado sin puntos ni dígito verificador, por ejemplo, el RUT 11.111.111-1 sería 11111111
-- El certificado digital en formato p12 (extensión .pfx o .p12), por ejemplo, [ks.p12](./ks.p12)
-- La clave del almacén p12, por ejemplo, 11111111, si no la conoce se coloca la misma de la clave privada
-- La clave de la llave privada, por ejemplo, 11111111
-- El archivo XML CRS, por ejemplo, [crs.xml](./crs.xml)
-- Descargar la utilidad [crs-utils.jar](./crs-utils.jar)
-
-En el archivo [sign.bat](./sign.bat) se puede ver como llamar a la utilidad para firmar un archivo:
-```bash
-java -jar -Dfile.encoding=UTF-8 crs-utils.jar^
- -rut 11111111^
- -ks ks.p12^
- -kspass 11111111^
- -kpass 11111111^
- -file crs.xml
- ```
-Al ejecutarlo se debería ver:
-```bash
-OK:
-        Archivo [crs-utils\crs.xml]
-        Firmado en archivo [crs-utils\crs-signed.xml]
-        Para RUT [11111111]
-```
-Y se debería generar como resultado un archivo crs firmado [crs-signed.xml](./crs-signed.xml)
-
-#### Código
-El código incluido en el archivo [crs-utils.jar](./crs-utils.jar) está basado en lo publicado por [IRS](http://irsgov.github.io) para FATCA
-http://irsgov.github.io/IDES-Data-Preparation-Java/
