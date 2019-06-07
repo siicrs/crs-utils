@@ -11,11 +11,11 @@ Para poder firmar un archivo CRS se requiere:
 - La clave del almacén p12, por ejemplo, 11111111, si no la conoce se coloca la misma de la clave privada
 - La clave de la llave privada, por ejemplo, 11111111
 - El archivo XML CRS, por ejemplo, [crs.xml](./crs.xml)
-- Descargar la utilidad [crs-utils.jar](./crs-utils.jar)
+- Descargar la utilidad [crs-utils-1.0.1.jar](./crs-utils-1.0.1.jar)
 
 En el archivo [sign.bat](./sign.bat) se puede ver como llamar a la utilidad para firmar un archivo:
 ```bash
-java -jar -Dfile.encoding=UTF-8 crs-utils.jar^
+java -jar -Dfile.encoding=UTF-8 crs-utils-1.0.1.jar^
  -rut 11111111^
  -ks ks.p12^
  -kspass 11111111^
@@ -32,7 +32,7 @@ OK:
 Y se debería generar como resultado un archivo crs firmado [crs-signed.xml](./crs-signed.xml)
 
 #### Código
-El código incluido en el archivo [crs-utils.jar](./crs-utils.jar) está basado en lo publicado por [IRS](http://irsgov.github.io) para FATCA
+El código incluido en el archivo [crs-utils-1.0.1.jar](./crs-utils-1.0.1.jar) está basado en lo publicado por [IRS](http://irsgov.github.io) para FATCA
 http://irsgov.github.io/IDES-Data-Preparation-Java/
 
 ### Envio XML
