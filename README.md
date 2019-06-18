@@ -48,8 +48,11 @@ Como alternativa si se tiene problemas con la firma, se puede utilizar la utilid
 
 ![XMLSec2](./xmlsec2.png)
 
-**4)** Editar el archivo **crs1.xml** agregando el reporte crs entre los elementos **<Object Id="CRS">…</Object>**
-
+**4)** Editar el archivo **crs1.xml** agregando el reporte crs entre los elementos:
+```xml
+<Object Id="CRS">…</Object>
+```
+Por ejemplo:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
