@@ -50,16 +50,16 @@ java -cp .;sara-client-1.0.0.jar -Dfile.encoding=UTF-8 cl.sii.sara.client.SaraCr
 Ingrese Sender:
 MiInstitucionFinancieraTest
 Ingrese Data File:
-crs.xml
+crs-signed.xml
 Ingrese Key Store File:
-crs.pfx
+ks.p12
 Ingrese Private Key Password:
 ****
 
 INFO cl.sii.sara.client.SaraCrsTestClientCmd - Parametros:
 -"s" (Sender) MiInstitucionFinancieraTest
--"df" (Data File) crs.xml
--"ksf" (Key Store File) crs.pfx
+-"df" (Data File) crs-signed.xml
+-"ksf" (Key Store File) ks.p12
 -"pkp" (Private Key Password) ****
 -"cto" (HTTP Connection Timeout) 300000
 -"rto" (HTTP Read Timeout) 300000
@@ -82,8 +82,8 @@ s
 INFO cl.sii.sara.client.SaraClientCmd - Archivo configuracion log [jar:file:/sara-client-1.0.0.jar!/simplelogger.properties]
 INFO cl.sii.sara.client.SaraClientCmd - Parametros:
 -"s" (Sender) MiInstitucionFinancieraTest
--"df" (Data File) crs.xml
--"ksf" (Key Store File) crs.pfx
+-"df" (Data File) crs-signed.xml
+-"ksf" (Key Store File) crs-signed.xml
 -"pkp" (Private Key Password) ****
 -"cto" (HTTP Connection Timeout) 300000
 -"rto" (HTTP Read Timeout) 300000
