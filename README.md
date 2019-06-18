@@ -4,7 +4,7 @@
 Para ejecutar estas utilidades se requiere:
 - Tener instalado [Java](http://www.oracle.com/technetwork/java/index.html) versión 8 o mayor
 
-### Firma XML
+### Firma XML (Java)
 Para poder firmar un archivo CRS se requiere:
 - El RUT del dueño de certificado sin puntos ni dígito verificador, por ejemplo, el RUT 11.111.111-1 sería 11111111
 - El certificado digital en formato p12 (extensión .pfx o .p12), por ejemplo, [ks.p12](./ks.p12)
@@ -34,6 +34,92 @@ Y se debería generar como resultado un archivo crs firmado [crs-signed.xml](./c
 #### Código
 El código incluido en el archivo [crs-utils-1.0.1.jar](./crs-utils-1.0.1.jar) está basado en lo publicado por [IRS](http://irsgov.github.io) para FATCA
 http://irsgov.github.io/IDES-Data-Preparation-Java/
+
+### Firma XML (XMLSec)
+Como alternativa si se tiene problemas con la firma, se puede utilizar la utilidad **[xmlsec](./xmlsec.zip)**, para lo cual se deben seguir los siguientes pasos:
+
+**1)** Descargar el archivo **[xmlsec](./xmlsec.zip)**
+
+**2)** Extraer el zip, por ejemplo, en **d:\crs**
+
+![XMLSec1](./xmlsec1.png)
+
+**3)** Abrir el archivo **template.xml** y guárdarlo con otro nombre, por ejemplo, **crs1.xml**
+
+![XMLSec2](./xmlsec2.png)
+
+**4)** Editar el archivo **crs1.xml** agregando el reporte crs entre los elementos **<Object Id="CRS">…</Object>**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+  <SignedInfo>
+ <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+ <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+ <Reference URI="#CRS">
+   <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+   <DigestValue/>
+ </Reference>
+  </SignedInfo>
+  <SignatureValue/>
+  <KeyInfo>
+ <X509Data>
+   <X509Certificate/>
+ </X509Data>
+ <KeyValue/>
+  </KeyInfo>
+  <Object Id="CRS"><!--Comienzo CRS--><crs:CRS_OECD xmlns:crs="urn:oecd:ties:crs:v1" xmlns:cfc="urn:oecd:ties:commontypesfatcacrs:v1" xmlns:ftc="urn:oecd:ties:fatca:v1" xmlns:iso="urn:oecd:ties:isocrstypes:v1" xmlns:stf="urn:oecd:ties:stf:v4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <crs:MessageSpec>
+          <crs:SendingCompanyIN>11111111</crs:SendingCompanyIN>
+          <crs:TransmittingCountry>CL</crs:TransmittingCountry>
+          <crs:ReceivingCountry>CL</crs:ReceivingCountry>
+          <crs:MessageType>CRS</crs:MessageType>
+          <crs:Warning>31-122017</crs:Warning>
+          <crs:MessageRefId>CL2017CLM11111111-0000000001</crs:MessageRefId>
+          <crs:MessageTypeIndic>CRS703</crs:MessageTypeIndic>
+          <crs:ReportingPeriod>2017-12-31</crs:ReportingPeriod>
+          <crs:Timestamp>2018-04-05T19:09:08.350-03:00</crs:Timestamp>
+    </crs:MessageSpec>
+    <crs:CrsBody>
+          <crs:ReportingFI>
+              <crs:ResCountryCode>CL</crs:ResCountryCode>
+              <crs:IN INType="RUT" issuedBy="CL">11111111</crs:IN>
+              <crs:Name nameType="OECD207">TEST</crs:Name>
+              <crs:Address legalAddressType="OECD303">
+                  <cfc:CountryCode>CL</cfc:CountryCode>
+                  <cfc:AddressFix>
+                      <cfc:Street>Calle 1</cfc:Street>
+                      <cfc:SuiteIdentifier>201</cfc:SuiteIdentifier>
+                      <cfc:FloorIdentifier>2</cfc:FloorIdentifier>
+                      <cfc:DistrictName>Santiago</cfc:DistrictName>
+                      <cfc:PostCode>7000000</cfc:PostCode>
+                     <cfc:City>Santiago</cfc:City>
+                      <cfc:CountrySubentity>Región Metropolitana</cfc:CountrySubentity>
+                  </cfc:AddressFix>
+              </crs:Address>
+              <crs:DocSpec>
+                  <stf:DocTypeIndic>OECD11</stf:DocTypeIndic>
+                  <stf:DocRefId>CL2017CLF11111111-0000000001</stf:DocRefId>
+              </crs:DocSpec>
+          </crs:ReportingFI>
+          <crs:ReportingGroup />
+    </crs:CrsBody>
+</crs:CRS_OECD><!--Fin CRS--></Object>
+</Signature>
+```
+
+**5)** Firmar el documento
+
+```bash
+xmlsec --sign --output crs1-signed.xml --pkcs12 ks.p12 --pwd 11111111 crs1.xml
+```
+
+Donde de debe reemplazar --pkcs12 **ks.p12** y --pwd **11111111** por el archivo p12 y clave que correspondan
+
+**6)** Verificar la firma
+```bash
+xmlsec --verify crs1-signed.xml
+```
 
 ### Envio XML
 Para enviar un archivo CRS a ambiente de pruebas utilizando la línea de comandos se requiere descargar el archivo [sara-client-1.0.0.jar](./sara-client-1.0.0.jar)
