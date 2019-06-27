@@ -52,6 +52,40 @@ sign.bat --pkcs12 ks.p12 --pwd 11111111 crs.xml
 
 Donde de debe reemplazar --pkcs12 **ks.p12** y --pwd **11111111** por el archivo p12 y clave que correspondan
 
+```bash
+Microsoft Windows [Versión 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation. Reservados todos los derechos.
+
+d:\crs\xmlsec>sign.bat ks.p12 11111111 crs.xml
+
+d:\crs\xmlsec>SET P12=ks.p12
+
+d:\crs\xmlsec>SET PWD=11111111
+
+d:\crs\xmlsec>SET CRS=crs.xml
+
+d:\crs\xmlsec>type "template-bgn.xml"  1>crs-tmp.xml
+
+d:\crs\xmlsec>type "crs.xml"  1>>crs-tmp.xml
+
+d:\crs\xmlsec>type "template-end.xml"  1>>crs-tmp.xml
+
+d:\crs\xmlsec>xmlsec --sign --output crs-signed.xml --pkcs12 ks.p12 --pwd 11111111 crs-tmp.xml
+
+d:\crs\xmlsec>xmlsec --verify crs-signed.xml
+func=xmlSecOpenSSLX509StoreVerify:file=..\src\openssl\x509vfy.c:line=360:obj=x509-store:subj=X509_verify_cert:error=4:crypto library function
+ failed:subj=/emailAddress=11111111@sii.cl/CN=11111111/OU=RUT - 11111111-1/OU=Digital ID Class 2/OU=Member, Symantec Trust Network/OU=Authent
+icated by E-Sign S.A./OU=Terminos de uso en www.e-sign.cl/rpa/O=SII;err=20;msg=unable to get local issuer certificate
+func=xmlSecOpenSSLX509StoreVerify:file=..\src\openssl\x509vfy.c:line=408:obj=x509-store:subj=unknown:error=71:certificate verification failed
+:err=20;msg=unable to get local issuer certificate
+OK
+SignedInfo References (ok/all): 1/1
+Manifests References (ok/all): 0/0
+
+d:\crs\xmlsec>pause
+Presione una tecla para continuar . . .
+```
+
 ### Envio XML
 Para enviar un archivo CRS a ambiente de pruebas utilizando la línea de comandos se requiere descargar el archivo [sara-client-1.0.0.jar](./sara-client-1.0.0.jar)
 
@@ -60,7 +94,7 @@ Y ejecutar lo siguiente:
 java -cp .;sara-client-1.0.0.jar -Dfile.encoding=UTF-8 cl.sii.sara.client.SaraCrsTestClientLauncher
  ```
 
-Se siolicitarán ciertos argumentos y se preguntará si quiere enviar el reporte:
+Se solicitarán ciertos argumentos y se preguntará si quiere enviar el reporte:
 
 ```bash
 java -cp .;sara-client-1.0.0.jar -Dfile.encoding=UTF-8 cl.sii.sara.client.SaraCrsTestClientLauncher
