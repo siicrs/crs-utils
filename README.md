@@ -4,39 +4,8 @@
 Para ejecutar estas utilidades se requiere:
 - Tener instalado [Java](http://www.oracle.com/technetwork/java/index.html) versión 8 o mayor
 
-### Firma XML (Java)
-Para poder firmar un archivo CRS se requiere:
-- El RUT del dueño de certificado sin puntos ni dígito verificador, por ejemplo, el RUT 11.111.111-1 sería 11111111
-- El certificado digital en formato p12 (extensión .pfx o .p12), por ejemplo, [ks.p12](./ks.p12)
-- La clave del almacén p12, por ejemplo, 11111111, si no la conoce se coloca la misma de la clave privada
-- La clave de la llave privada, por ejemplo, 11111111
-- El archivo XML CRS, por ejemplo, [crs.xml](./crs.xml)
-- Descargar la utilidad [crs-utils-1.0.1.jar](./crs-utils-1.0.1.jar)
-
-En el archivo [sign.bat](./sign.bat) se puede ver como llamar a la utilidad para firmar un archivo:
-```bash
-java -jar -Dfile.encoding=UTF-8 crs-utils-1.0.1.jar^
- -rut 11111111^
- -ks ks.p12^
- -kspass 11111111^
- -kpass 11111111^
- -file crs.xml
- ```
-Al ejecutarlo se debería ver:
-```bash
-OK:
-        Archivo [crs-utils\crs.xml]
-        Firmado en archivo [crs-utils\crs-signed.xml]
-        Para RUT [11111111]
-```
-Y se debería generar como resultado un archivo crs firmado [crs-signed.xml](./crs-signed.xml)
-
-#### Código
-El código incluido en el archivo [crs-utils-1.0.1.jar](./crs-utils-1.0.1.jar) está basado en lo publicado por [IRS](http://irsgov.github.io) para FATCA
-http://irsgov.github.io/IDES-Data-Preparation-Java/
-
-### Firma XML (XMLSec)
-Como alternativa si se tiene problemas con la firma, se puede utilizar la utilidad **[xmlsec](https://www.aleksey.com/xmlsec/index.html)**, para lo cual se deben seguir los siguientes pasos:
+### Firma XML
+Se deben seguir los siguientes pasos:
 
 **1)** Descargar el archivo **[xmlsec](./xmlsec.zip)**
 
