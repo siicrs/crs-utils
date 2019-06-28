@@ -24,7 +24,7 @@ Se deben seguir los siguientes pasos:
 sign.bat ks.p12 11111111 crs.xml
 ```
 
-Donde de debe reemplazar --pkcs12 **ks.p12** y --pwd **11111111** por el archivo p12 y clave que correspondan
+Donde de debe reemplazar **ks.p12** y **11111111** por el archivo p12 y clave que correspondan
 
 ```bash
 Microsoft Windows [Versión 6.1.7601]
