@@ -1,10 +1,15 @@
 # crs-utils
 ## Utilidades para CRS SII
 
-Para ejecutar estas utilidades se requiere:
-- Tener instalado [Java](http://www.oracle.com/technetwork/java/index.html) versión 8 o mayor
 
 ### Firma XML
+Para poder firmar un archivo CRS se requiere:
+- El RUT del dueño de certificado sin puntos ni dígito verificador, por ejemplo, el RUT 11.111.111-1 sería 11111111
+- El certificado digital en formato p12 (extensión .pfx o .p12), por ejemplo, [ks.p12](./ks.p12)
+- La clave del almacén p12, por ejemplo, 11111111, si no la conoce se coloca la misma de la clave privada
+- La clave de la llave privada, por ejemplo, 11111111
+- El archivo XML CRS, por ejemplo, [crs.xml](./crs.xml)
+
 Se deben seguir los siguientes pasos:
 
 **1)** Descargar el archivo **[xmlsec](./xmlsec.zip)**
@@ -56,6 +61,8 @@ Presione una tecla para continuar . . .
 ```
 
 ### Envio XML
+Se requiere tener instalado [Java](http://www.oracle.com/technetwork/java/index.html) versión 8 o mayor
+
 Para enviar un archivo CRS a ambiente de pruebas utilizando la línea de comandos se requiere descargar el archivo [sara-client-1.0.0.jar](./sara-client-1.0.0.jar)
 
 Y ejecutar lo siguiente:
