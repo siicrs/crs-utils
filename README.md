@@ -21,7 +21,7 @@ Se deben seguir los siguientes pasos:
 **3)** Firmar y Verificar el documento
 
 ```bash
-sign.bat --pkcs12 ks.p12 --pwd 11111111 crs.xml
+sign.bat ks.p12 11111111 crs.xml
 ```
 
 Donde de debe reemplazar --pkcs12 **ks.p12** y --pwd **11111111** por el archivo p12 y clave que correspondan
